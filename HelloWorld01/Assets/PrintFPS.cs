@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
  
 public class PrintFPS : MonoBehaviour 
 {
-	private float slowestFrame = 0.00001f;
+	public int resetFrameCounterCount = 180; // Reset the slowest frame every N frames to see new spikes
+
+	private float slowestFrame = 0.00001f;  // Should probably use some math positive min thingy...
 	private int frameCounter = 0;
 
 	void Start()
@@ -13,7 +15,7 @@ public class PrintFPS : MonoBehaviour
 	 
 	void OnGUI()
 	{
-		// Reset the slowest frame every 30 frames to see new spikes
+		// I know this is a very lame but I was lazy
 		if( Time.deltaTime > slowestFrame || frameCounter == 180 )
 		{
 			slowestFrame = Time.deltaTime;
